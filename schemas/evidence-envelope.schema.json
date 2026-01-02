@@ -58,6 +58,8 @@
     "artifacts": {
       "type": "array",
       "description": "References to collected evidence artifacts",
+      "minItems": 1,
+      "maxItems": 1000,
       "items": {
         "type": "object",
         "required": ["artifact_id", "type", "path"],
@@ -73,7 +75,9 @@
           },
           "path": {
             "type": "string",
-            "description": "Relative path within run bundle"
+            "description": "Relative path within run bundle",
+            "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+            "maxLength": 1024
           },
           "hash": {
             "type": "object",
@@ -103,6 +107,7 @@
     "findings": {
       "type": "array",
       "description": "Issues or observations discovered during scan",
+      "maxItems": 500,
       "items": {
         "$ref": "#/$defs/finding"
       }
@@ -136,6 +141,7 @@
         },
         "signatures": {
           "type": "array",
+          "maxItems": 10,
           "items": {
             "type": "object",
             "properties": {
@@ -159,7 +165,8 @@
         "contains_paths": { "type": "boolean", "default": true },
         "redact_fields": {
           "type": "array",
-          "items": { "type": "string" },
+          "maxItems": 100,
+          "items": { "type": "string", "maxLength": 256 },
           "description": "JSON paths to fields requiring redaction"
         },
         "safe_to_share": { "type": "boolean", "default": false }
@@ -182,6 +189,7 @@
         "description": { "type": "string" },
         "evidence_refs": {
           "type": "array",
+          "maxItems": 50,
           "items": { "type": "string", "format": "uuid" },
           "description": "References to artifact_ids supporting this finding"
         },

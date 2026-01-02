@@ -136,7 +136,8 @@
         },
         "reserved_names": {
           "type": "array",
-          "items": { "type": "string" },
+          "maxItems": 50,
+          "items": { "type": "string", "maxLength": 16 },
           "default": ["CON", "PRN", "AUX", "NUL", "COM1", "LPT1"],
           "description": "Windows reserved names to avoid"
         }
@@ -145,6 +146,7 @@
     "contents": {
       "type": "array",
       "description": "Inventory of bundle contents",
+      "maxItems": 1000,
       "items": {
         "type": "object",
         "properties": {

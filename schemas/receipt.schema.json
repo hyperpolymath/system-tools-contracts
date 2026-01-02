@@ -52,6 +52,7 @@
     },
     "steps_executed": {
       "type": "array",
+      "maxItems": 100,
       "items": {
         "$ref": "#/$defs/step_result"
       }
@@ -59,6 +60,7 @@
     "unchanged": {
       "type": "array",
       "description": "Items that were checked but NOT changed, with reasons",
+      "maxItems": 500,
       "items": {
         "type": "object",
         "properties": {
@@ -78,7 +80,9 @@
         "available": { "type": "boolean" },
         "path": {
           "type": "string",
-          "description": "Path to undo bundle within run bundle"
+          "description": "Path to undo bundle within run bundle",
+          "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+          "maxLength": 1024
         },
         "expires_at": {
           "type": "string",
@@ -87,13 +91,18 @@
         },
         "steps": {
           "type": "array",
+          "maxItems": 100,
           "items": {
             "type": "object",
             "properties": {
-              "step_ref": { "type": "string" },
+              "step_ref": { "type": "string", "maxLength": 64 },
               "reversible": { "type": "boolean" },
-              "undo_command": { "type": "string" },
-              "backup_path": { "type": "string" }
+              "undo_command": { "type": "string", "maxLength": 2048 },
+              "backup_path": {
+                "type": "string",
+                "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+                "maxLength": 1024
+              }
             }
           }
         }
@@ -103,15 +112,33 @@
       "type": "object",
       "description": "References to evidence artifacts",
       "properties": {
-        "before_snapshot": { "type": "string" },
-        "after_snapshot": { "type": "string" },
+        "before_snapshot": {
+          "type": "string",
+          "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+          "maxLength": 1024
+        },
+        "after_snapshot": {
+          "type": "string",
+          "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+          "maxLength": 1024
+        },
         "logs": {
           "type": "array",
-          "items": { "type": "string" }
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+            "maxLength": 1024
+          }
         },
         "diffs": {
           "type": "array",
-          "items": { "type": "string" }
+          "maxItems": 100,
+          "items": {
+            "type": "string",
+            "pattern": "^(?!.*\\.\\.)(?!.*//)[a-zA-Z0-9_./@-]+$",
+            "maxLength": 1024
+          }
         }
       }
     },
@@ -127,6 +154,7 @@
     "signatures": {
       "type": "array",
       "description": "Cryptographic signatures for integrity",
+      "maxItems": 10,
       "items": {
         "type": "object",
         "properties": {
