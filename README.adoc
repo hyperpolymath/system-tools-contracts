@@ -94,6 +94,19 @@ Components should declare:
 * `tests/` — conformance tests and fixtures
 * `docs/` — versioning rules, change policy, contribution rules
 
+== Ecosystem Analysis
+
+For a comprehensive analysis of integration seams, failure modes, and security considerations across the entire AmbientOps System Tools ecosystem, see:
+
+link:https://github.com/hyperpolymath/system-operating-theatre/blob/main/docs/SEAM-ANALYSIS.adoc[SEAM-ANALYSIS.adoc] in system-operating-theatre
+
+This analysis covers:
+
+* Cross-schema reference validation
+* DoS prevention via payload constraints
+* Path traversal guards
+* Contract versioning strategy
+
 == Roadmap
 
 See `ROADMAP.adoc`.
