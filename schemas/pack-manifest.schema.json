@@ -28,6 +28,7 @@
       "properties": {
         "os": {
           "type": "array",
+          "maxItems": 5,
           "items": {
             "type": "string",
             "enum": ["windows", "linux", "macos", "bsd", "any"]
@@ -37,6 +38,7 @@
         "os_version_max": { "type": "string" },
         "arch": {
           "type": "array",
+          "maxItems": 5,
           "items": {
             "type": "string",
             "enum": ["x86_64", "aarch64", "x86", "arm", "any"]
@@ -62,6 +64,7 @@
     },
     "categories": {
       "type": "array",
+      "maxItems": 13,
       "items": {
         "type": "string",
         "enum": ["disk", "memory", "cpu", "network", "security", "privacy", "startup", "services", "updates", "drivers", "performance", "cleanup", "custom"]
@@ -70,6 +73,7 @@
     "checks": {
       "type": "array",
       "description": "Diagnostic checks this pack performs",
+      "maxItems": 200,
       "items": {
         "$ref": "#/$defs/check"
       }
@@ -77,6 +81,7 @@
     "actions": {
       "type": "array",
       "description": "Actions this pack can perform",
+      "maxItems": 100,
       "items": {
         "$ref": "#/$defs/action"
       }
@@ -96,6 +101,7 @@
         },
         "custom": {
           "type": "array",
+          "maxItems": 10,
           "items": { "$ref": "#/$defs/mode" }
         }
       }
@@ -108,15 +114,17 @@
         "color": { "type": "string" },
         "sections": {
           "type": "array",
+          "maxItems": 20,
           "items": {
             "type": "object",
             "properties": {
-              "id": { "type": "string" },
-              "title": { "type": "string" },
-              "description": { "type": "string" },
+              "id": { "type": "string", "maxLength": 64 },
+              "title": { "type": "string", "maxLength": 128 },
+              "description": { "type": "string", "maxLength": 512 },
               "checks": {
                 "type": "array",
-                "items": { "type": "string" }
+                "maxItems": 50,
+                "items": { "type": "string", "maxLength": 64 }
               }
             }
           }
@@ -126,10 +134,11 @@
     "dependencies": {
       "type": "array",
       "description": "Other packs this pack depends on",
+      "maxItems": 20,
       "items": {
         "type": "object",
         "properties": {
-          "pack_id": { "type": "string" },
+          "pack_id": { "type": "string", "maxLength": 64 },
           "version_min": { "type": "string" },
           "optional": { "type": "boolean", "default": false }
         }
@@ -189,7 +198,8 @@
         },
         "requires_privileges": {
           "type": "array",
-          "items": { "type": "string" }
+          "maxItems": 4,
+          "items": { "type": "string", "enum": ["user", "admin", "root", "system"] }
         },
         "estimated_duration_seconds": {
           "type": "integer"
@@ -221,7 +231,8 @@
         },
         "addresses_checks": {
           "type": "array",
-          "items": { "type": "string" },
+          "maxItems": 50,
+          "items": { "type": "string", "maxLength": 64 },
           "description": "Which check_ids this action can address"
         },
         "implementation": {
@@ -236,11 +247,13 @@
         "description": { "type": "string" },
         "enabled_checks": {
           "type": "array",
-          "items": { "type": "string" }
+          "maxItems": 200,
+          "items": { "type": "string", "maxLength": 64 }
         },
         "disabled_checks": {
           "type": "array",
-          "items": { "type": "string" }
+          "maxItems": 200,
+          "items": { "type": "string", "maxLength": 64 }
         },
         "auto_apply": {
           "type": "boolean",

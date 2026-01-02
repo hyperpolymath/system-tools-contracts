@@ -37,6 +37,7 @@
     "evidence_pointers": {
       "type": "array",
       "description": "References to supporting evidence",
+      "maxItems": 50,
       "items": {
         "type": "object",
         "properties": {
@@ -70,11 +71,12 @@
         },
         "snooze_options": {
           "type": "array",
+          "maxItems": 5,
           "items": {
             "type": "object",
             "properties": {
-              "label": { "type": "string" },
-              "duration_seconds": { "type": "integer" }
+              "label": { "type": "string", "maxLength": 64 },
+              "duration_seconds": { "type": "integer", "minimum": 0 }
             }
           }
         }
@@ -83,6 +85,7 @@
     "actions": {
       "type": "array",
       "description": "Suggested actions user can take",
+      "maxItems": 10,
       "items": {
         "type": "object",
         "properties": {

@@ -56,6 +56,7 @@
     },
     "attachments": {
       "type": "array",
+      "maxItems": 20,
       "items": {
         "type": "object",
         "properties": {
@@ -96,6 +97,7 @@
         "redact_ips": { "type": "boolean", "default": true },
         "custom_patterns": {
           "type": "array",
+          "maxItems": 50,
           "items": {
             "type": "object",
             "properties": {
@@ -113,6 +115,7 @@
         "targets": {
           "type": "array",
           "description": "Specific targets if known",
+          "maxItems": 10,
           "items": {
             "type": "object",
             "properties": {
@@ -127,7 +130,8 @@
         },
         "tags": {
           "type": "array",
-          "items": { "type": "string" },
+          "maxItems": 20,
+          "items": { "type": "string", "maxLength": 64 },
           "description": "Tags for categorization/filtering"
         },
         "severity": {
@@ -156,6 +160,7 @@
         "receipt_ref": { "type": "string", "format": "uuid" },
         "related_messages": {
           "type": "array",
+          "maxItems": 20,
           "items": { "type": "string", "format": "uuid" }
         }
       }
