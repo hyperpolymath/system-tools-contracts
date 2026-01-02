@@ -8,3 +8,4 @@
 
 export * from "./schemas/mod.ts";
 export * from "./lib/validator.ts";
+export * from "./lib/cross-validator.ts";
