@@ -1,5 +1,5 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/hyperpolymath/system-tools-contracts/schemas/ambient-payload.schema.json",
   "title": "Ambient Payload",
   "description": "Data format for the ambient (Ward) UI layer. Minimal, glanceable system state for the dock/tray indicator.",
