@@ -24,7 +24,7 @@
       (role "V-layer emergency trigger")
       (description "Implements incident envelope and receipt contracts"))
 
-    (satellite "jusys"
+    (satellite "system-observatory"
       (relationship "consumes")
       (role "observability layer")
       (description "Consumes run bundles and weather payloads for correlation"))

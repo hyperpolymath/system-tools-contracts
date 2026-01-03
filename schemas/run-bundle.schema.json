@@ -20,7 +20,7 @@
     },
     "source_tool": {
       "type": "string",
-      "enum": ["big-up", "ambient", "a-and-e", "jusys", "psa"]
+      "enum": ["big-up", "ambient", "a-and-e", "sysobs", "psa"]
     },
     "bundle_type": {
       "type": "string",

@@ -109,7 +109,7 @@
     },
     "trends": {
       "type": "object",
-      "description": "Trend indicators from JuSys",
+      "description": "Trend indicators from System Observatory",
       "properties": {
         "disk_usage": { "$ref": "#/$defs/trend" },
         "memory_pressure": { "$ref": "#/$defs/trend" },
