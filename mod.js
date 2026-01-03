@@ -6,6 +6,6 @@
  * This module exports schema definitions and validation utilities.
  */
 
-export * from "./schemas/mod.ts";
-export * from "./lib/validator.ts";
-export * from "./lib/cross-validator.ts";
+export * from "./schemas/mod.js";
+export * from "./lib/validator.js";
+export * from "./lib/cross-validator.js";

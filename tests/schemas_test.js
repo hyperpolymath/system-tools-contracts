@@ -5,13 +5,13 @@
 
 import { assertEquals, assertExists } from "@std/assert";
 import { describe, it } from "@std/testing/bdd";
-import { createValidator } from "../lib/validator.ts";
-import { loadAllSchemas, loadSchema, SCHEMA_FILES, type SchemaName } from "../schemas/mod.ts";
+import { createValidator } from "../lib/validator.js";
+import { loadAllSchemas, loadSchema, SCHEMA_FILES } from "../schemas/mod.js";
 
 describe("Schema Loading", () => {
   it("should load all schema files", async () => {
     const schemas = await loadAllSchemas();
-    const schemaNames = Object.keys(SCHEMA_FILES) as SchemaName[];
+    const schemaNames = Object.keys(SCHEMA_FILES);
 
     for (const name of schemaNames) {
       assertExists(schemas[name], `Schema ${name} should be loaded`);
@@ -19,10 +19,10 @@ describe("Schema Loading", () => {
   });
 
   it("should have valid JSON Schema structure", async () => {
-    const schemaNames = Object.keys(SCHEMA_FILES) as SchemaName[];
+    const schemaNames = Object.keys(SCHEMA_FILES);
 
     for (const name of schemaNames) {
-      const schema = (await loadSchema(name)) as Record<string, unknown>;
+      const schema = await loadSchema(name);
       assertExists(schema.$schema, `${name} should have $schema`);
       assertExists(schema.$id, `${name} should have $id`);
       assertExists(schema.title, `${name} should have title`);
